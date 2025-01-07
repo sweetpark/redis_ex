@@ -20,8 +20,18 @@ public class Member {
         return this.phone;
     }
 
-    public Member(){
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public void setPhone(String phone){
+        this.phone = phone;
+    }
+
+    public Member(String name, String phone){
         this.num = UUID.randomUUID().toString();
+        this.name = name;
+        this.phone = phone;
     }
 
 }

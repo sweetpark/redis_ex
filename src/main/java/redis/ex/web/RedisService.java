@@ -12,6 +12,7 @@ import java.time.Duration;
 public class RedisService {
 
     private final RedisTemplate<String, String> redisTemplate;
+    @Autowired
     private ObjectMapper objectMapper;
 
     @Autowired
@@ -23,6 +24,7 @@ public class RedisService {
     public void saveRedis(Member member) throws Exception{
         String memberNum = member.getNum();
         String memberJson = objectMapper.writeValueAsString(member);
+        System.out.println(memberJson);
 
         redisTemplate.opsForValue().set("member:pending:" + memberNum, memberJson, Duration.ofMinutes(30));
 
