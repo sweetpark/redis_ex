@@ -26,8 +26,7 @@ public class RedisService {
         String memberJson = objectMapper.writeValueAsString(member);
         System.out.println(memberJson);
 
-        redisTemplate.opsForValue().set("member:pending:" + memberNum, memberJson, Duration.ofMinutes(30));
-
+        redisTemplate.opsForValue().set("member:pending:" + memberNum, memberJson, Duration.ofMinutes(10));
     }
 
 
@@ -38,7 +37,13 @@ public class RedisService {
 
 
     public void deleteFromRedis(String memberNum){
-        redisTemplate.delete("payment:pending" + memberNum);
+        if (redisTemplate.delete("member:pending:" + memberNum)){
+            System.out.println("delete redis tuple");
+        }else{
+            System.out.println("no delete redis");
+        }
+
+
     }
 
 

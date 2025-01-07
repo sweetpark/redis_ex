@@ -45,6 +45,7 @@ public class RedisTest {
 
         try{
             redisService.getFromRedis(testMember.getNum()).getName().equals("test");
+            redisService.deleteFromRedis(testMember.getNum());
         }catch (Exception e){
             e.printStackTrace();
         }
